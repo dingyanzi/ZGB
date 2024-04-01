@@ -1,0 +1,30 @@
+// 全局变量
+@import 'src/styles/variables';
+// ele样式覆盖
+@import 'src/styles/element-ui';
+// 顶部右侧显示
+@import 'src/styles/top';
+// 导航标签
+@import 'src/styles/tags';
+// 工具类函数
+@import 'src/styles/mixin';
+// 侧面导航栏
+@import 'src/styles/sidebar';
+// 动画
+@import 'src/styles/animate/vue-transition';
+//主题
+@import 'src/styles/theme/index';
+//适配
+@import 'src/styles/media';
+//通用配置
+@import 'src/styles/normalize';
+
+a{
+  text-decoration: none;
+  color:#333;
+}
+*{
+  outline: none;
+}
+//滚动条样式
+@include scrollBar;
