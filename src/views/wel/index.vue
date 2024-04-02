@@ -1,133 +1,162 @@
 <template>
-  <div
-    class="home"
-    v-loading="loading"
-    element-loading-text="欢迎使用购买社会组织服务管理系统~"
-    element-loading-spinner="el-icon-loading"
-    style="width: 100%"
-  >
-    <div class="home-loading flex">
-      <!-- <div v-for='(item,index) in data' :style='{"background":index==0?"#db2f00":index==1?"#ff6d37":index==2?"#ffa489":"#99d3d4"}' :key='index' class="text-center">{{item}}</div> -->
+  <div class="home" style="width: 100%">
+    <div>
+      <div class="topCon">
+        年份：xxx
+      </div>
+      <el-row :gutter="10">
+        <el-col :span="14">
+          <projectSta></projectSta>
+        </el-col>
+        <el-col :span="10">
+          <projectMon></projectMon>
+        </el-col>
+      </el-row>
+      <el-row :gutter="10">
+        <el-col :span="14">
+          <div class="scheduleCon">
+            <div class="topTitle"><img src="../../styles/images/index_a.png">项目进度</div>
+          </div>
+        </el-col>
+        <el-col :span="10">
+          <div class="projectType">
+            <div class="topTitles">
+              <div class="left">
+                <img src="../../styles/images/index_a.png">项目类型统计
+              </div>
+              <div class="right">
+                <div :class="[ selectTab == 0?'active':'normal']" @click="tabItem(0)">按项目数量</div>
+                <div :class="[ selectTab == 1?'active':'normal']" @click="tabItem(1)">按项目资金</div>
+              </div>
+            </div>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row :gutter="10">
+        <el-col :span="12">
+          <serviceCon></serviceCon>
+        </el-col>
+        <el-col :span="12">
+          <moneyCon></moneyCon>
+        </el-col>
+      </el-row>
     </div>
   </div>
 </template>
 
 <script>
+import projectSta from "./components/projectSta.vue";
+import projectMon from "./components/projectMon.vue";
+import serviceCon from "./components/serviceCon.vue";
+import moneyCon from "./components/moneyCon.vue";
 export default {
+  components: {
+    projectSta,
+    projectMon,
+    serviceCon,
+    moneyCon
+  },
   name: "wel",
   data() {
     return {
       loading: true,
-      data: ["欢", "迎", "使", "用"],
+      selectTab: 0,
     };
   },
   computed: {},
-  created() {},
-  methods: {},
+  created() { },
+  methods: {
+    tabItem(index) {
+      this.selectTab = index
+    }
+  },
 };
 </script>
 
-<style scoped="scoped" lang="scss">
-.home {
-  background: #fff;
-  height: calc(100vh - 116px);
-  /deep/.el-icon-loading {
-    display: none;
-  }
-  .home-loading {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -140px;
-    margin-top: -55px;
-    padding: 60px 0;
-    overflow: hidden;
-    & > div {
-      font-size: 21px;
-      width: 70px;
-      height: 70px;
-      color: #fff;
-      border-radius: 100%;
-      line-height: 70px;
-      margin: 0 5px;
-      /* &:after{
-        content: '';
-    position: absolute;
-    bottom: -20px;
-    left: 18px;
-    width: 37px;
-    height: 11px;
-    background: #322b27;
-    border-radius: 100%;
-      } */
-      &:first-child {
-        animation: bounce 1.5s infinite ease-in-out;
-        animation-delay: 0ms;
-      }
-      &:nth-child(2) {
-        animation: bounce 1.5s infinite ease-in-out;
-        animation-delay: 50ms;
-      }
-      &:nth-child(3) {
-        animation: bounce 1.5s infinite ease-in-out;
-        animation-delay: 100ms;
-      }
-      &:last-child {
-        animation: bounce 1.5s infinite ease-in-out;
-        animation-delay: 150ms;
-      }
-    }
-  }
-}
-/* @keyframes bouncefirst{
-  0% {
-    transform: translateX(0px);
-}
-20% {
-    transform: translateX(-50px);
-}
-25% {
-    transform: translateX(-50px);
-}
-50% {
-    transform: translateX(100px);
-}
-80%, 100% {
-    transform: translateX(0px);
-}
-} */
-@keyframes bounce {
-  0% {
-    transform: translateY(-150px);
-  }
-  20% {
-    transform: translateY(30px);
-  }
-  30% {
-    transform: translateY(-10px);
-  }
-  40% {
-    transform: translateY(0);
-  }
-  60% {
-    transform: translateY(0);
-  }
-  80% {
-    transform: translateY(-20px);
-  }
-  100% {
-    transform: translateY(150px);
-  }
-}
-</style>
-
 <style lang="scss">
 .home {
-  .el-icon-loading {
-    font-size: 40px;
+  padding: 10px;
+  background: linear-gradient(180deg, #ECF4FF 0%, #F2FDF8 100%);
+  height: calc(100vh);
+}
+
+.topCon {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.topTitle {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333333;
+  margin: 0 10px 10px 10px;
+
+  img {
+    padding-right: 10px;
+    width: 20px;
   }
-  .el-loading-text {
-    font-size: 30px;
+}
+
+//项目进度
+.scheduleCon,
+.projectType {
+  background: #fff;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  padding: 15px 0;
+  border-radius: 10px;
+}
+
+//项目类型统计
+.topTitles {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+
+  color: #333333;
+  margin: 0 10px 10px 10px;
+  justify-content: space-between;
+
+  .left {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+
+    img {
+      padding-right: 10px;
+      width: 20px;
+    }
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+    div{
+      cursor: pointer;
+      &:first-child{
+        margin-right: 10px;
+      }
+    }
+    .normal {
+      padding: 5px;
+      background: linear-gradient(140deg, #DEEBFA 0%, #8CDCE3 100%);
+      border-radius: 2px;
+      font-size: 12px;
+      color: #999999;
+
+     
+    }
+    .active{
+      padding: 4px 5px;
+      background: linear-gradient(140deg, #6EADFD 0%, #8CDCE3 100%);
+      border-radius: 2px;
+      font-size: 12px;
+      color: #fff;
+    }
   }
 }
 </style>
