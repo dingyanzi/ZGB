@@ -139,7 +139,6 @@ export default {
   }
 }
 
-//项目统计
 .cotentCon {
   background: #fff;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
@@ -169,8 +168,6 @@ export default {
   }
 
   .desc {
-
-
     .numbers {
       font-size: 12px;
       color: #666666;

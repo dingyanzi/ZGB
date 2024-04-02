@@ -3,8 +3,24 @@
     <div>
       <div class="topCon">
         年份：
-        <el-select v-model="yearValue" multiple placeholder="请选择">
-          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+        <el-select
+          filterable
+          class="el-select"
+          v-model="yearValue"
+          multiple
+          placeholder=""
+        >
+          <template slot="prefix">
+            <span class="iconRi">
+              <img src="../../styles//images/index_rili.png" />
+            </span>
+          </template>
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
           </el-option>
         </el-select>
       </div>
@@ -19,18 +35,31 @@
       <el-row :gutter="10">
         <el-col :span="14">
           <div class="scheduleCon">
-            <div class="topTitle"><img src="../../styles/images/index_a.png">项目进度</div>
+            <div class="topTitle">
+              <img src="../../styles/images/index_a.png" />项目进度
+            </div>
+            
           </div>
         </el-col>
         <el-col :span="10">
           <div class="projectType">
             <div class="topTitles">
               <div class="left">
-                <img src="../../styles/images/index_a.png">项目类型统计
+                <img src="../../styles/images/index_a.png" />项目类型统计
               </div>
               <div class="right">
-                <div :class="[selectTab == 0 ? 'active' : 'normal']" @click="tabItem(0)">按项目数量</div>
-                <div :class="[selectTab == 1 ? 'active' : 'normal']" @click="tabItem(1)">按项目资金</div>
+                <div
+                  :class="[selectTab == 0 ? 'active' : 'normal']"
+                  @click="tabItem(0)"
+                >
+                  按项目数量
+                </div>
+                <div
+                  :class="[selectTab == 1 ? 'active' : 'normal']"
+                  @click="tabItem(1)"
+                >
+                  按项目资金
+                </div>
               </div>
             </div>
           </div>
@@ -58,7 +87,7 @@ export default {
     projectSta,
     projectMon,
     serviceCon,
-    moneyCon
+    moneyCon,
   },
   name: "wel",
   data() {
@@ -66,21 +95,40 @@ export default {
       loading: true,
       selectTab: 0,
       yearValue: [],
-      options: [{
-        value: '选项1',
-        label: '黄金糕'
-      }, {
-        value: '选项2',
-        label: '双皮奶'
-      }]
+      options: [
+        {
+          value: "选项1",
+          label: "黄金糕",
+        },
+        {
+          value: "选项2",
+          label: "双皮奶",
+        },
+        {
+          value: "选项3",
+          label: "黄金糕",
+        },
+        {
+          value: "选项4",
+          label: "双皮奶",
+        },
+        {
+          value: "选项5",
+          label: "黄金糕",
+        },
+        {
+          value: "选项6",
+          label: "双皮奶",
+        },
+      ],
     };
   },
   computed: {},
-  created() { },
+  created() {},
   methods: {
     tabItem(index) {
-      this.selectTab = index
-    }
+      this.selectTab = index;
+    },
   },
 };
 </script>
@@ -88,18 +136,51 @@ export default {
 <style lang="scss">
 .home {
   padding: 10px;
-  background: linear-gradient(180deg, #ECF4FF 0%, #F2FDF8 100%);
+  background: linear-gradient(180deg, #ecf4ff 0%, #f2fdf8 100%);
   height: calc(100vh);
 }
 
 .topCon {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   font-size: 14px;
   color: #333;
   margin-bottom: 10px;
 }
-
+.el-select .iconRi {
+  color: #fff;
+  display: block;
+  padding: 13px 0 0 5px;
+}
+.el-select {
+  background-image: linear-gradient(to right, #6eadfd, #b3f9ff);
+  border-radius: 5px;
+}
+.el-select .el-input .el-input__inner {
+  background: none;
+  border: none;
+  padding-right: 0px;
+}
+.el-select .el-select__input {
+  color: #fff;
+}
+.el-select .el-select__tags {
+  padding-left: 30px;
+}
+.el-select .el-tag.el-tag--info {
+  background: none;
+  border: none;
+  color: #fff;
+  margin: 0;
+  height: auto;
+  padding-right: 5px;
+  padding-left: 0;
+  font-size: 14px;
+}
+.el-tag.el-tag--info .el-tag__close {
+  display: none;
+}
 .topTitle {
   display: flex;
   align-items: center;
@@ -118,7 +199,7 @@ export default {
 .scheduleCon,
 .projectType {
   background: #fff;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   padding: 15px 0;
   border-radius: 10px;
 }
@@ -158,17 +239,15 @@ export default {
 
     .normal {
       padding: 5px;
-      background: linear-gradient(140deg, #DEEBFA 0%, #8CDCE3 100%);
+      background: linear-gradient(140deg, #deebfa 0%, #8cdce3 100%);
       border-radius: 2px;
       font-size: 12px;
       color: #999999;
-
-
     }
 
     .active {
       padding: 4px 5px;
-      background: linear-gradient(140deg, #6EADFD 0%, #8CDCE3 100%);
+      background: linear-gradient(140deg, #6eadfd 0%, #8cdce3 100%);
       border-radius: 2px;
       font-size: 12px;
       color: #fff;
