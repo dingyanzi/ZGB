@@ -2,7 +2,11 @@
   <div class="home" style="width: 100%">
     <div>
       <div class="topCon">
-        年份：xxx
+        年份：
+        <el-select v-model="yearValue" multiple placeholder="请选择">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+          </el-option>
+        </el-select>
       </div>
       <el-row :gutter="10">
         <el-col :span="14">
@@ -25,8 +29,8 @@
                 <img src="../../styles/images/index_a.png">项目类型统计
               </div>
               <div class="right">
-                <div :class="[ selectTab == 0?'active':'normal']" @click="tabItem(0)">按项目数量</div>
-                <div :class="[ selectTab == 1?'active':'normal']" @click="tabItem(1)">按项目资金</div>
+                <div :class="[selectTab == 0 ? 'active' : 'normal']" @click="tabItem(0)">按项目数量</div>
+                <div :class="[selectTab == 1 ? 'active' : 'normal']" @click="tabItem(1)">按项目资金</div>
               </div>
             </div>
           </div>
@@ -61,6 +65,14 @@ export default {
     return {
       loading: true,
       selectTab: 0,
+      yearValue: [],
+      options: [{
+        value: '选项1',
+        label: '黄金糕'
+      }, {
+        value: '选项2',
+        label: '双皮奶'
+      }]
     };
   },
   computed: {},
@@ -135,12 +147,15 @@ export default {
   .right {
     display: flex;
     align-items: center;
-    div{
+
+    div {
       cursor: pointer;
-      &:first-child{
+
+      &:first-child {
         margin-right: 10px;
       }
     }
+
     .normal {
       padding: 5px;
       background: linear-gradient(140deg, #DEEBFA 0%, #8CDCE3 100%);
@@ -148,9 +163,10 @@ export default {
       font-size: 12px;
       color: #999999;
 
-     
+
     }
-    .active{
+
+    .active {
       padding: 4px 5px;
       background: linear-gradient(140deg, #6EADFD 0%, #8CDCE3 100%);
       border-radius: 2px;

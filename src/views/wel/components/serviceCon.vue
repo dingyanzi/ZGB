@@ -17,9 +17,9 @@
         </el-table-column>
         <el-table-column prop="date" label="完成数">
         </el-table-column>
-        <el-table-column prop="num" label="进度" width="200">
+        <el-table-column prop="date" label="进度" width="200">
           <template slot-scope="scope">
-            <el-progress :percentage="scope.row.num" class="gradient-progress"></el-progress>
+            <el-progress :percentage="scope.row.date" class="gradient-progress"></el-progress>
           </template>
         </el-table-column>
       </el-table>
@@ -39,31 +39,31 @@ export default {
     return {
       tableData: [{
         num: '85',
-        date: '88',
+        date: 88,
         address: '上海市普陀'
       }, {
         num: '0',
-        date: '88',
+        date: 88,
         address: '上海市普陀上海市普陀上海市普陀'
       }, {
         num: '0',
-        date: '88',
+        date: 88,
         address: '上海市普陀'
       },{
         num: '0',
-        date: '88',
+        date: 88,
         address: '上海市普陀'
       },{
         num: '0',
-        date: '88',
+        date: 88,
         address: '上海市普陀'
       },{
         num: '0',
-        date: '88',
+        date: 88,
         address: '上海市普陀'
       },{
         num: '0',
-        date: '88',
+        date: 88,
         address: '上海市普陀'
       }]
     };

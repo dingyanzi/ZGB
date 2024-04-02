@@ -1,19 +1,19 @@
 <template>
   <div class="cotentCon">
-    <div class="topTitle"><img src="../../../styles/images/index_b.png">项目统计</div>
+    <div class="topTitle"><img src="../../../styles/images/index_b.png">项目资金</div>
     <el-row class="conBox">
       <el-col class="con">
         <img src="../../../styles/images/index_b_1.png">
         <div class="desc">
-          <div class="numbers"><b>10</b>个</div>
-          <div class="name">项目数</div>
+          <div class="numbers"><b>10</b>万元</div>
+          <div class="name">项目总金额</div>
         </div>
       </el-col>
       <el-col class="con">
         <img src="../../../styles/images/index_b_2.png">
         <div class="desc">
-          <div class="numbers"><b>10</b>个</div>
-          <div class="name">项目数</div>
+          <div class="numbers"><b>10</b>万元</div>
+          <div class="name">已支金额总计</div>
         </div>
       </el-col>
     </el-row>

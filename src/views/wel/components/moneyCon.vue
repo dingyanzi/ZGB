@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="conBox">
-      <el-table class="tableS" stripe :data="tableData" height="250" :border="false" :cell-style="{ border: 0 + 'px' }">
+      <el-table class="tableS" stripe :data="tableData" height="240" :border="false" :cell-style="{ border: 0 + 'px' }">
         <el-table-column prop="address" label="名称" width="200" :show-overflow-tooltip="true">
         </el-table-column>
         <el-table-column prop="date" label="目标数">
