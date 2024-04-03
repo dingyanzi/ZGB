@@ -143,6 +143,7 @@ export default {
   background: #fff;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
   padding: 15px 0;
+  // margin-bottom: 20px;
   border-radius: 10px;
 
   .conBox {
