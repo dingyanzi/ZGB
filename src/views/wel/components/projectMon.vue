@@ -5,14 +5,14 @@
       <el-col class="con">
         <img src="../../../styles/images/index_b_1.png">
         <div class="desc">
-          <div class="numbers"><b>10</b>万元</div>
+          <div class="numbers"><b>{{ dataObj.totalPrice }}</b>万元</div>
           <div class="name">项目总金额</div>
         </div>
       </el-col>
       <el-col class="con">
         <img src="../../../styles/images/index_b_2.png">
         <div class="desc">
-          <div class="numbers"><b>10</b>万元</div>
+          <div class="numbers"><b>{{ dataObj.expenditureAmount }}</b>万元</div>
           <div class="name">已支金额总计</div>
         </div>
       </el-col>
@@ -24,8 +24,11 @@
 export default {
   name: 'projectSta',
   props: {
-    icon: {
-      type: String,
+    dataObj: {
+      type: Object,
+      default: () => {
+        return {}
+      }
     },
   },
   computed: {

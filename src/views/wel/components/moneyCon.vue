@@ -7,15 +7,15 @@
     </div>
     <div class="conBox">
       <el-table class="tableS" stripe :data="tableData" height="240" :border="false" :cell-style="{ border: 0 + 'px' }">
-        <el-table-column prop="address" label="名称" width="200" :show-overflow-tooltip="true">
+        <el-table-column prop="projectName" label="名称" width="200" :show-overflow-tooltip="true">
         </el-table-column>
-        <el-table-column prop="date" label="目标数">
+        <el-table-column prop="subtotal" label="总金额">
         </el-table-column>
-        <el-table-column prop="date" label="完成数">
+        <el-table-column prop="price" label="已支金额">
         </el-table-column>
-        <el-table-column prop="date" label="进度" width="200">
+        <el-table-column prop="percentage" label="进度" width="200">
           <template slot-scope="scope">
-            <el-progress :percentage="scope.row.date" class="gradient-progress"></el-progress>
+            <el-progress :percentage="scope.row.percentage" class="gradient-progress"></el-progress>
           </template>
         </el-table-column>
       </el-table>
@@ -27,42 +27,24 @@
 export default {
   name: 'moneyCon',
   props: {
-    icon: {
-      type: String,
+    dataArr: {
+      type: Array,
+      default: ()=>{ [] }
     },
   },
   data() {
     return {
-      tableData: [{
-        num: '85',
-        date: 88,
-        address: '上海市普陀'
-      }, {
-        num: '0',
-        date: 88,
-        address: '上海市普陀上海市普陀上海市普陀'
-      }, {
-        num: '0',
-        date: 88,
-        address: '上海市普陀'
-      },{
-        num: '0',
-        date: 88,
-        address: '上海市普陀'
-      },{
-        num: '0',
-        date: 88,
-        address: '上海市普陀'
-      },{
-        num: '0',
-        date: 88,
-        address: '上海市普陀'
-      },{
-        num: '0',
-        date: 88,
-        address: '上海市普陀'
-      }]
+      tableData: []
     };
+  },
+  watch:{
+    dataArr:{
+      handler(val){
+        if(val){
+          this.tableData = val;
+        }
+      }
+    },
   },
   mounted() {
   },

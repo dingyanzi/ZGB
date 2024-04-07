@@ -5,21 +5,21 @@
       <el-col class="con">
         <img src="../../../styles/images/index_a_1.png">
         <div class="desc">
-          <div class="numbers"><b>10</b>个</div>
+          <div class="numbers"><b>{{ dataObj.projectNum}}</b>个</div>
           <div class="name">项目数</div>
         </div>
       </el-col>
       <el-col class="con">
         <img src="../../../styles/images/index_a_2.png">
         <div class="desc">
-          <div class="numbers"><b>10</b>个</div>
+          <div class="numbers"><b>{{ dataObj.implementNum}}</b>个</div>
           <div class="name">实施中</div>
         </div>
       </el-col>
       <el-col class="con">
         <img src="../../../styles/images/index_a_3.png">
         <div class="desc">
-          <div class="numbers"><b>10</b>个</div>
+          <div class="numbers"><b>{{ dataObj.endNum}}</b>个</div>
           <div class="name">已结项</div>
         </div>
       </el-col>
@@ -31,8 +31,11 @@
 export default {
   name: 'projectSta',
   props: {
-    icon: {
-      type: String,
+    dataObj: {
+      type: Object,
+      default: () => {
+        return {}
+      }
     },
   },
   computed: {

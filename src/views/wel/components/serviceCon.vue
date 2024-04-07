@@ -5,21 +5,23 @@
         <img src="../../../styles/images/index_c.png">服务对象人数统计(人)
       </div>
       <div class="right">
-        <div class="desc"><span class="round rounda"></span>目标服务:<span><b>1000</b>人</span></div>
-        <div class="desc"><span class="round roundb"></span>已服务:<span><b>1000</b>人</span></div>
+        <div class="desc"><span class="round rounda"></span>目标服务:<span><b>{{ dataObj.personNumTotal }}</b>人</span></div>
+        <div class="desc"><span class="round roundb"></span>已服务:<span><b>{{ dataObj.numberBeneficiariesTotal
+              }}</b>人</span></div>
       </div>
     </div>
     <div class="conBox">
-      <el-table class="tableS" stripe  :data="tableData" height="240" :border="false" :cell-style="{ border: 0 + 'px' }">
-        <el-table-column prop="address" label="名称" width="200" :show-overflow-tooltip="true">
+     
+      <el-table class="tableS" stripe :data="tableData" height="240" :border="false" :cell-style="{ border: 0 + 'px' }">
+        <el-table-column prop="name" label="名称" width="200" :show-overflow-tooltip="true">
         </el-table-column>
-        <el-table-column prop="date" label="目标数">
+        <el-table-column prop="personNum" label="目标数">
         </el-table-column>
-        <el-table-column prop="date" label="完成数">
+        <el-table-column prop="numberBeneficiaries" label="已服务人数">
         </el-table-column>
-        <el-table-column prop="date" label="进度" width="200">
+        <el-table-column prop="percentage" label="进度" width="200">
           <template slot-scope="scope">
-            <el-progress :percentage="scope.row.date" class="gradient-progress"></el-progress>
+            <el-progress :percentage="Number(scope.row.percentage)" class="gradient-progress"></el-progress>
           </template>
         </el-table-column>
       </el-table>
@@ -31,42 +33,35 @@
 export default {
   name: 'serviceCon',
   props: {
-    icon: {
-      type: String,
+    dataArr: {
+      type: Array,
+      default: () => { [] }
     },
+    dataObj: {
+      type: Object,
+      default: () => { { } }
+    }
   },
   data() {
     return {
-      tableData: [{
-        num: '85',
-        date: 88,
-        address: '上海市普陀'
-      }, {
-        num: '0',
-        date: 88,
-        address: '上海市普陀上海市普陀上海市普陀'
-      }, {
-        num: '0',
-        date: 88,
-        address: '上海市普陀'
-      },{
-        num: '0',
-        date: 88,
-        address: '上海市普陀'
-      },{
-        num: '0',
-        date: 88,
-        address: '上海市普陀'
-      },{
-        num: '0',
-        date: 88,
-        address: '上海市普陀'
-      },{
-        num: '0',
-        date: 88,
-        address: '上海市普陀'
-      }]
+      tableData: []
     };
+  },
+  watch: {
+    dataArr: {
+      handler(val) {
+        if (val) {
+          this.tableData = val;
+        }
+      }
+    },
+    // dataObj: {
+    //   handler(val) {
+    //     if (val) {
+    //       this.dataObj = val;
+    //     }
+    //   }
+    // }
   },
   mounted() {
   },
@@ -190,16 +185,20 @@ export default {
 .tableS {
   width: 100%;
 }
-/deep/ .el-table th{
+
+/deep/ .el-table th {
   padding: 8px 0;
   color: #333;
 }
+
 /deep/ .gradient-progress .el-progress-bar__inner {
   background-image: linear-gradient(to right, #6EADFD, #B3F9FF);
 }
-/deep/ .el-progress-bar__outer{
+
+/deep/ .el-progress-bar__outer {
   background: #E4F3FF;
 }
+
 /deep/ .has-gutter th {
   background: #E4F3FF;
 }

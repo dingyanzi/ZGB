@@ -3,22 +3,22 @@
     <div>
       <div class="topCon">
         年份：
-        <el-select filterable class="el-select" v-model="yearValue" multiple placeholder="">
+        <el-select filterable class="el-select" v-model="yearValue" multiple placeholder="" @change="selectChange">
           <template slot="prefix">
             <span class="iconRi">
               <img src="../../styles//images/index_rili.png" />
             </span>
           </template>
-          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+          <el-option v-for="item in annualsArr" :key="item" :label="item" :value="item">
           </el-option>
         </el-select>
       </div>
       <el-row :gutter="10">
         <el-col :span="14">
-          <projectSta></projectSta>
+          <projectSta :dataObj="objectStatistic"></projectSta>
         </el-col>
         <el-col :span="10">
-          <projectMon></projectMon>
+          <projectMon :dataObj="objectPrice"></projectMon>
         </el-col>
       </el-row>
       <el-row :gutter="10">
@@ -51,10 +51,10 @@
       </el-row>
       <el-row :gutter="10">
         <el-col :span="12">
-          <serviceCon></serviceCon>
+          <serviceCon :dataArr="projectPersonNumList" :dataObj="projectPersonObj"></serviceCon>
         </el-col>
         <el-col :span="12">
-          <moneyCon></moneyCon>
+          <moneyCon :dataArr="sumProjectSubtotalByProjectIdPrice"></moneyCon>
         </el-col>
       </el-row>
     </div>
@@ -62,13 +62,15 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import { getAnnuals, getIndex } from '@/api/index'
 import * as echarts from "echarts";
 import projectSta from "./components/projectSta.vue";
 import projectMon from "./components/projectMon.vue";
 import serviceCon from "./components/serviceCon.vue";
 import moneyCon from "./components/moneyCon.vue";
-let dataAxis = ['项目一', '项目二', '项目三', '项目四', '项目五', '项目六', '项目七'];
-let data = [70, 82, 92, 100, 77, 93, 55];
+// let dataAxis = ['项目一', '项目二', '项目三', '项目四', '项目五', '项目六', '项目七'];
+// let data = [70, 82, 92, 100, 77, 93, 55];
 export default {
   components: {
     projectSta,
@@ -82,45 +84,67 @@ export default {
       loading: true,
       selectTab: 0,
       yearValue: [],
-      options: [
-        {
-          value: "选项1",
-          label: "黄金糕",
-        },
-        {
-          value: "选项2",
-          label: "双皮奶",
-        },
-        {
-          value: "选项3",
-          label: "黄金糕",
-        },
-        {
-          value: "选项4",
-          label: "双皮奶",
-        },
-        {
-          value: "选项5",
-          label: "黄金糕",
-        },
-        {
-          value: "选项6",
-          label: "双皮奶",
-        },
-      ],
+      annualsArr: [],
+      objectStatistic: {},//项目统计
+      objectPrice: {},//项目资金
+      projectPersonNumList: [],//服务对象人数统计
+      projectPersonObj: { numberBeneficiariesTotal: 0, personNumTotal: 0 },//服务对象总数
+      sumProjectSubtotalByProjectIdPrice: [],//资金使用情况
+      objectProgress: [],//项目进度统计
+      projectTypeNum: [],//项目类型数量统计
+      projectTypePrice: [],//项目类型金额统计
     };
   },
   computed: {},
   mounted() {
-    this.echartsInitA();
-    this.echartsInitB(0);
+    this.getAnnualsList();
   },
   methods: {
+    //查询年度
+    getAnnualsList() {
+      getAnnuals({
+        queryUserId: this.userInfo.userId,
+        queryOrgan: this.userInfo.orgId
+      }).then(res => {
+        this.annualsArr = res.data;
+        this.yearValue.push(res.data[0]);
+        this.getIndexFun()
+      })
+    },
+    selectChange() {
+      this.getIndexFun();
+    },
+    getIndexFun() {
+      getIndex({
+        queryUserId: this.userInfo.userId,
+        queryOrgan: this.userInfo.orgId,
+        annuals: this.yearValue.length == 0 ? this.annualsArr[0] : this.yearValue.join(',')
+      }).then(res => {
+        console.log(res.data)
+        if (res.code == '0') {
+          this.objectStatistic = res.data.objectStatistic;
+          this.objectPrice = res.data.objectPrice;
+          this.projectPersonNumList = res.data.projectPersonNumList;
+          this.projectPersonObj.numberBeneficiariesTotal = res.data.numberBeneficiariesTotal;
+          this.projectPersonObj.personNumTotal = res.data.personNumTotal;
+          this.sumProjectSubtotalByProjectIdPrice = res.data.sumProjectSubtotalByProjectIdPrice;
+          this.objectProgress = res.data.objectProgress;
+          this.projectTypePrice = res.data.projectTypePrice;
+          this.projectTypeNum = res.data.projectTypeNum;
+          if (res.data.objectProgress) {
+            this.echartsInitA(res.data.objectProgress.objectProgressKey, res.data.objectProgress.objectProgressValue);
+          }
+          if (this.projectTypePrice.length > 0) {
+            this.echartsInitB(0);
+          }
+        }
+      })
+    },
     tabItem(index) {
       this.selectTab = index;
       this.echartsInitB(index);
     },
-    echartsInitA() {
+    echartsInitA(dataAxis, data) {
       const myChart = echarts.init(document.getElementById('echartsA')); //初始化容器
       const option = {
         xAxis: {
@@ -184,40 +208,41 @@ export default {
     },
     echartsInitB(index) {
       const str = index == 0 ? '个' : '万元';
+      let data = index === 0 ? this.projectTypePrice : this.projectTypeNum;
       const myChart = echarts.init(document.getElementById('echartsB')); //初始化容器
       const option = {
         series: [
           {
             type: 'pie',
             radius: ['40%', '70%'],
-            data: [
-              { value: 100, name: '政府购买' },
-              { value: 580, name: '青少年服务' },
-              { value: 484, name: '福利慈善' },
-              { value: 300, name: '社会组织发展' },
-              { value: 300, name: '其它' },
-              { value: 300, name: '助残服务' }
-            ],
+            data: data,
+            // [
+            //   { value: 100, name: '政府购买' },
+            //   { value: 580, name: '青少年服务' },
+            //   { value: 484, name: '福利慈善' },
+            //   { value: 300, name: '社会组织发展' },
+            //   { value: 300, name: '其它' },
+            //   { value: 300, name: '助残服务' }
+            // ],
             label: {
               normal: {
                 show: true,
-                formatter: function(params) {
-                        // 这里定义特殊文本的样式
-                        return '{a|' + params.name + '} {b|' + params.value + '} {str|' + str + '}';
-                    },
-                    rich: {
-                        // 在这里定义具体的样式
-                        a: {
-                            color: '#333',
-                            fontSize: 12
-                        },
-                        b: {
-                            fontSize: 16
-                        },
-                        str:{
-                          fontSize: 12
-                        }
-                    }
+                formatter: function (params) {
+                  // 这里定义特殊文本的样式
+                  return '{a|' + params.name + '} {b|' + params.value + '} {str|' + str + '}';
+                },
+                rich: {
+                  a: {
+                    color: '#333',
+                    fontSize: 12
+                  },
+                  b: {
+                    fontSize: 16
+                  },
+                  str: {
+                    fontSize: 12
+                  }
+                }
               }
             },
             itemStyle: {
@@ -240,6 +265,9 @@ export default {
       };
       myChart.setOption(option);
     }
+  },
+  computed: {
+    ...mapGetters(["userInfo"]),
   },
 };
 </script>
@@ -265,7 +293,7 @@ export default {
   color: #fff;
   display: block;
   // padding: 13px 0 0 5px;
-  padding-left:5px ;
+  padding-left: 5px;
 }
 
 .el-select {
@@ -278,19 +306,20 @@ export default {
   border: none;
   // padding-right: 0px;
 }
-.el-select .el-input__prefix{
+
+.el-select .el-input__prefix {
   display: flex;
   align-items: center;
 }
 
-.el-select .el-select__input {
-  color: #fff;
-}
+// .el-select .el-select__input {
+//   color: #fff;
+// }
 
-.el-select .el-select__tags {
-  padding-left: 30px;
-  max-width: none !important;
-}
+// .el-select .el-select__tags {
+//   padding-left: 30px;
+//   max-width: none !important;
+// }
 
 .el-select .el-tag.el-tag--info {
   // background: none;
@@ -365,7 +394,7 @@ export default {
 
     .normal {
       padding: 5px;
-      background: linear-gradient(90deg, rgba(110, 173, 253, 0.20) , rgba(140, 220, 227, 0) );
+      background: linear-gradient(90deg, rgba(110, 173, 253, 0.20), rgba(140, 220, 227, 0));
       border-radius: 4px;
       font-size: 12px;
       color: #999999;
