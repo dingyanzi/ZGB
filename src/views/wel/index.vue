@@ -3,7 +3,8 @@
     <div>
       <div class="topCon">
         年份：
-        <el-select filterable class="el-select" v-model="yearValue" multiple placeholder="" @change="selectChange">
+        <el-select filterable collapse-tags class="autoWidth" v-model="yearValue" multiple placeholder=""
+          @change="selectChange">
           <template slot="prefix">
             <span class="iconRi">
               <img src="../../styles//images/index_rili.png" />
@@ -69,8 +70,6 @@ import projectSta from "./components/projectSta.vue";
 import projectMon from "./components/projectMon.vue";
 import serviceCon from "./components/serviceCon.vue";
 import moneyCon from "./components/moneyCon.vue";
-// let dataAxis = ['项目一', '项目二', '项目三', '项目四', '项目五', '项目六', '项目七'];
-// let data = [70, 82, 92, 100, 77, 93, 55];
 export default {
   components: {
     projectSta,
@@ -81,7 +80,6 @@ export default {
   name: "wel",
   data() {
     return {
-      loading: true,
       selectTab: 0,
       yearValue: [],
       annualsArr: [],
@@ -93,9 +91,10 @@ export default {
       objectProgress: [],//项目进度统计
       projectTypeNum: [],//项目类型数量统计
       projectTypePrice: [],//项目类型金额统计
+      value: [],
+      a: []
     };
   },
-  computed: {},
   mounted() {
     this.getAnnualsList();
   },
@@ -114,13 +113,13 @@ export default {
     selectChange() {
       this.getIndexFun();
     },
+    //查询首页数据
     getIndexFun() {
       getIndex({
         queryUserId: this.userInfo.userId,
         queryOrgan: this.userInfo.orgId,
         annuals: this.yearValue.length == 0 ? this.annualsArr[0] : this.yearValue.join(',')
       }).then(res => {
-        console.log(res.data)
         if (res.code == '0') {
           this.objectStatistic = res.data.objectStatistic;
           this.objectPrice = res.data.objectPrice;
@@ -145,7 +144,7 @@ export default {
       this.echartsInitB(index);
     },
     echartsInitA(dataAxis, data) {
-      const myChart = echarts.init(document.getElementById('echartsA')); //初始化容器
+      const myChart = echarts.init(document.getElementById('echartsA'));
       const option = {
         xAxis: {
           data: dataAxis,
@@ -209,26 +208,17 @@ export default {
     echartsInitB(index) {
       const str = index == 0 ? '个' : '万元';
       let data = index === 0 ? this.projectTypePrice : this.projectTypeNum;
-      const myChart = echarts.init(document.getElementById('echartsB')); //初始化容器
+      const myChart = echarts.init(document.getElementById('echartsB'));
       const option = {
         series: [
           {
             type: 'pie',
             radius: ['40%', '70%'],
             data: data,
-            // [
-            //   { value: 100, name: '政府购买' },
-            //   { value: 580, name: '青少年服务' },
-            //   { value: 484, name: '福利慈善' },
-            //   { value: 300, name: '社会组织发展' },
-            //   { value: 300, name: '其它' },
-            //   { value: 300, name: '助残服务' }
-            // ],
             label: {
               normal: {
                 show: true,
                 formatter: function (params) {
-                  // 这里定义特殊文本的样式
                   return '{a|' + params.name + '} {b|' + params.value + '} {str|' + str + '}';
                 },
                 rich: {
@@ -276,8 +266,8 @@ export default {
 .home {
   padding: 10px;
   background: linear-gradient(180deg, #ecf4ff 0%, #f2fdf8 100%);
-  // height: calc(100vh);
   padding-bottom: 40px;
+  // height: calc(100vh);
 }
 
 .topCon {
@@ -289,52 +279,31 @@ export default {
   margin-bottom: 10px;
 }
 
-.el-select .iconRi {
+.autoWidth .iconRi {
   color: #fff;
   display: block;
-  // padding: 13px 0 0 5px;
   padding-left: 5px;
 }
 
-.el-select {
+.autoWidth {
   background-image: linear-gradient(to right, #6eadfd, #b3f9ff);
   border-radius: 5px;
 }
 
-.el-select .el-input .el-input__inner {
+.autoWidth .el-input .el-input__inner {
   background: none;
   border: none;
   // padding-right: 0px;
 }
 
-.el-select .el-input__prefix {
+.autoWidth .el-input__prefix {
   display: flex;
   align-items: center;
 }
 
-// .el-select .el-select__input {
-//   color: #fff;
-// }
-
-// .el-select .el-select__tags {
-//   padding-left: 30px;
-//   max-width: none !important;
-// }
-
-.el-select .el-tag.el-tag--info {
-  // background: none;
-  // border: none;
-  // color: #fff;
-  // margin: 0;
-  // height: auto;
-  // padding-right: 0px;
-  // padding-left: 0;
-  font-size: 14px;
+.autoWidth .el-select__tags {
+  padding-left: 30px;
 }
-
-// .el-tag.el-tag--info .el-tag__close {
-//   display: none;
-// }
 
 .topTitle {
   display: flex;

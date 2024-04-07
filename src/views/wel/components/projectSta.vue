@@ -1,6 +1,6 @@
 <template>
   <div class="cotentCon">
-    <div class="topTitle"><img src="../../../styles/images/index_a.png">项目统计</div>
+    <div class="topTitle"><img src="../../../styles/images/index_d.png">项目统计</div>
     <el-row class="conBox">
       <el-col class="con">
         <img src="../../../styles/images/index_a_1.png">
