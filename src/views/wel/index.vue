@@ -146,6 +146,10 @@ export default {
     echartsInitA(dataAxis, data) {
       const myChart = echarts.init(document.getElementById('echartsA'));
       const option = {
+        grid: {
+        left: '10%',
+        right: '5%',
+    },
         xAxis: {
           data: dataAxis,
           axisTick: {
@@ -177,7 +181,7 @@ export default {
         series: [
           {
             type: 'bar',
-            barWidth: 15,
+            barWidth: 11,
             itemStyle: {
               normal: {
                 barBorderRadius: 30,
@@ -198,6 +202,7 @@ export default {
               position: 'top',
               formatter: '{c}%',
               color: '#2C81FF',
+              fontSize:11
             },
             data: data
           }

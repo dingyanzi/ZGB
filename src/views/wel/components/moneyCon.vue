@@ -7,13 +7,13 @@
     </div>
     <div class="conBox">
       <el-table class="tableS" stripe :data="tableData" height="240" :border="false" :cell-style="{ border: 0 + 'px' }">
-        <el-table-column prop="projectName" label="名称" width="200" :show-overflow-tooltip="true">
+        <el-table-column prop="projectName" label="名称" :show-overflow-tooltip="true">
         </el-table-column>
         <el-table-column prop="subtotal" label="总金额">
         </el-table-column>
         <el-table-column prop="price" label="已支金额">
         </el-table-column>
-        <el-table-column prop="percentage" label="进度" width="200">
+        <el-table-column prop="percentage" label="进度">
           <template slot-scope="scope">
             <el-progress :percentage="scope.row.percentage" class="gradient-progress"></el-progress>
           </template>
@@ -29,7 +29,7 @@ export default {
   props: {
     dataArr: {
       type: Array,
-      default: ()=>{ [] }
+      default: () => { [] }
     },
   },
   data() {
@@ -37,10 +37,10 @@ export default {
       tableData: []
     };
   },
-  watch:{
-    dataArr:{
-      handler(val){
-        if(val){
+  watch: {
+    dataArr: {
+      handler(val) {
+        if (val) {
           this.tableData = val;
         }
       }
@@ -144,7 +144,8 @@ export default {
 /deep/ .gradient-progress .el-progress-bar__inner {
   background-image: linear-gradient(to right, #F9C694, #FFE9AE);
 }
-/deep/ .el-progress-bar__outer{
+
+/deep/ .el-progress-bar__outer {
   background: #FFF4E4;
 }
 
