@@ -12,7 +12,7 @@
     </div>
     <div class="conBox">
      
-      <el-table class="tableS" stripe :data="tableData" height="240" :border="false" :cell-style="{ border: 0 + 'px' }">
+      <el-table class="tableS" stripe :data="tableData" height="200" :border="false" :cell-style="{ border: 0 + 'px' }">
         <el-table-column prop="name" label="名称" :show-overflow-tooltip="true">
         </el-table-column>
         <el-table-column prop="personNum" label="目标数">
