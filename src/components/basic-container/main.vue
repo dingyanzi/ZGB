@@ -37,6 +37,7 @@ export default {
 
 <style lang="scss">
 .basic-container {
+  margin-top: 10px;
   padding: 10px 6px;
   box-sizing: border-box;
   &--block {

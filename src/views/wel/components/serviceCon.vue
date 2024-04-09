@@ -5,8 +5,8 @@
         <img src="../../../styles/images/index_c.png">服务对象人数统计(人)
       </div>
       <div class="right">
-        <div class="desc"><span class="round rounda"></span>目标服务:<span><b>{{ dataObj.personNumTotal }}</b>人</span></div>
-        <div class="desc"><span class="round roundb"></span>已服务:<span><b>{{ dataObj.numberBeneficiariesTotal
+        <div class="desc"><span class="round rounda"></span>目标服务：<span><b>{{ dataObj.personNumTotal }}</b>人</span></div>
+        <div class="desc"><span class="round roundb"></span>已服务：<span><b>{{ dataObj.numberBeneficiariesTotal
               }}</b>人</span></div>
       </div>
     </div>
@@ -189,6 +189,7 @@ export default {
 /deep/ .el-table th {
   padding: 8px 0;
   color: #333;
+  font-size: 16px;
 }
 
 /deep/ .gradient-progress .el-progress-bar__inner {
@@ -202,12 +203,16 @@ export default {
 /deep/ .has-gutter th {
   background: #E4F3FF;
 }
-
-/deep/ .el-table--striped .el-table__body tr.el-table__row--striped td {
-  background: rgba(228, 243, 255, 0.30)
+/deep/ .el-table--enable-row-transition .el-table__body td{
+  font-size: 16px;
 }
-
+/deep/ .el-table--striped .el-table__body tr.el-table__row--striped td {
+  background: rgba(228, 243, 255, 0.30);
+}
 /deep/ .el-table::before {
   background: none;
+}
+/deep/ .el-progress__text{
+  // font-size: 16px !important;
 }
 </style>

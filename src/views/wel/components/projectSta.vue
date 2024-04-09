@@ -76,18 +76,18 @@ export default {
    
 
     .numbers {
-      font-size: 12px;
+      font-size: 20px;
       color: #666666;
     }
 
     b {
       color: #000;
-      font-size: 18px;
+      font-size: 32px;
       padding-right: 5px;
     }
 
     .name {
-      font-size: 12px;
+      font-size: 20px;
       color: #666666;
     }
   }

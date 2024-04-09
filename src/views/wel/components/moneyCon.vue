@@ -74,7 +74,7 @@ export default {
     display: flex;
     align-items: center;
     font-weight: 600;
-
+    font-size: 20px;
     img {
       padding-right: 10px;
       width: 20px;
@@ -123,6 +123,7 @@ export default {
       color: #000;
       font-size: 18px;
       padding-right: 5px;
+      font-size: 16px;
     }
 
     .name {
@@ -139,6 +140,7 @@ export default {
 /deep/ .el-table th {
   padding: 8px 0;
   color: #333;
+  font-size: 16px;
 }
 
 /deep/ .gradient-progress .el-progress-bar__inner {
@@ -152,7 +154,9 @@ export default {
 /deep/ .has-gutter th {
   background: #FFF4E4;
 }
-
+/deep/ .el-table--enable-row-transition .el-table__body td{
+  font-size: 16px;
+}
 /deep/ .el-table--striped .el-table__body tr.el-table__row--striped td {
   background: rgba(228, 243, 255, 0.30)
 }

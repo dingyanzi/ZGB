@@ -160,7 +160,8 @@ export default {
             show: false
           },
           axisLabel: {
-            color: '#999'
+            color: '#999',
+            fontSize:16
           },
           z: 10
         },
@@ -202,7 +203,7 @@ export default {
               position: 'top',
               formatter: '{c}%',
               color: '#2C81FF',
-              fontSize:11
+              fontSize:14
             },
             data: data
           }
@@ -229,13 +230,13 @@ export default {
                 rich: {
                   a: {
                     color: '#333',
-                    fontSize: 12
-                  },
-                  b: {
                     fontSize: 16
                   },
+                  b: {
+                    fontSize: 26
+                  },
                   str: {
-                    fontSize: 12
+                    fontSize: 16
                   }
                 }
               }
@@ -279,7 +280,7 @@ export default {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  font-size: 14px;
+  font-size: 18px;
   color: #333;
   margin-bottom: 10px;
 }
@@ -289,7 +290,9 @@ export default {
   display: block;
   padding-left: 5px;
 }
-
+.autoWidth .el-select__tags-text{
+  font-size: 16px;
+}
 .autoWidth {
   background-image: linear-gradient(to right, #6eadfd, #b3f9ff);
   border-radius: 5px;
@@ -304,6 +307,7 @@ export default {
 .autoWidth .el-input__prefix {
   display: flex;
   align-items: center;
+  padding-top: 2px
 }
 
 .autoWidth .el-select__tags {
@@ -313,7 +317,7 @@ export default {
 .topTitle {
   display: flex;
   align-items: center;
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 600;
   color: #333333;
   margin: 0 10px 10px 10px;
@@ -347,7 +351,7 @@ export default {
     display: flex;
     align-items: center;
     font-weight: 600;
-
+    font-size: 20px;
     img {
       padding-right: 10px;
       width: 20px;
@@ -370,7 +374,7 @@ export default {
       padding: 5px;
       background: linear-gradient(90deg, rgba(110, 173, 253, 0.20), rgba(140, 220, 227, 0));
       border-radius: 4px;
-      font-size: 12px;
+      font-size: 16px;
       color: #999999;
     }
 
@@ -378,7 +382,7 @@ export default {
       padding: 4px 5px;
       background: linear-gradient(90deg, #6eadfd 0%, #8cdce3 100%);
       border-radius: 4px;
-      font-size: 12px;
+      font-size: 16px;
       color: #fff;
     }
   }
