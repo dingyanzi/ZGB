@@ -74,7 +74,7 @@ export default {
     display: flex;
     align-items: center;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 18px;
     img {
       padding-right: 10px;
       width: 20px;

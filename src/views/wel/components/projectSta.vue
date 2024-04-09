@@ -68,7 +68,7 @@ export default {
 
     img {
       padding-right: 10%;
-      width: 40px;
+      width: 20%;
     }
   }
 
@@ -82,7 +82,7 @@ export default {
 
     b {
       color: #000;
-      font-size: 32px;
+      font-size: 28px;
       padding-right: 5px;
     }
 

@@ -317,7 +317,7 @@ export default {
 .topTitle {
   display: flex;
   align-items: center;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   color: #333333;
   margin: 0 10px 10px 10px;
@@ -351,7 +351,7 @@ export default {
     display: flex;
     align-items: center;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 18px;
     img {
       padding-right: 10px;
       width: 20px;
@@ -390,6 +390,6 @@ export default {
 
 .charts {
   width: 100%;
-  height: 40vh;
+  height: 35vh;
 }
 </style>
