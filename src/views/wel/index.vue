@@ -147,9 +147,9 @@ export default {
       const myChart = echarts.init(document.getElementById('echartsA'));
       const option = {
         grid: {
-        left: '10%',
-        right: '5%',
-    },
+          left: '10%',
+          right: '5%',
+        },
         xAxis: {
           data: dataAxis,
           axisTick: {
@@ -161,7 +161,7 @@ export default {
           },
           axisLabel: {
             color: '#999',
-            fontSize:16
+            fontSize: 16
           },
           z: 10
         },
@@ -203,7 +203,7 @@ export default {
               position: 'top',
               formatter: '{c}%',
               color: '#2C81FF',
-              fontSize:14
+              fontSize: 14
             },
             data: data
           }
@@ -290,9 +290,11 @@ export default {
   display: block;
   padding-left: 5px;
 }
-.autoWidth .el-select__tags-text{
+
+.autoWidth .el-select__tags-text {
   font-size: 16px;
 }
+
 .autoWidth {
   background-image: linear-gradient(to right, #6eadfd, #b3f9ff);
   border-radius: 5px;
@@ -352,6 +354,7 @@ export default {
     align-items: center;
     font-weight: 600;
     font-size: 18px;
+
     img {
       padding-right: 10px;
       width: 20px;
