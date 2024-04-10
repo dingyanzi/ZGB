@@ -15,9 +15,9 @@
       <el-table class="tableS" stripe :data="tableData" height="200" :border="false" :cell-style="{ border: 0 + 'px' }">
         <el-table-column prop="name" label="名称" :show-overflow-tooltip="true">
         </el-table-column>
-        <el-table-column prop="personNum" label="目标数">
+        <el-table-column prop="numberBeneficiaries" label="目标数">
         </el-table-column>
-        <el-table-column prop="numberBeneficiaries" label="已服务人数">
+        <el-table-column prop="personNum" label="已服务人数">
         </el-table-column>
         <el-table-column prop="percentage" label="进度">
           <template slot-scope="scope">

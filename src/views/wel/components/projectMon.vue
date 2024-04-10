@@ -60,7 +60,7 @@ export default {
     background: linear-gradient(to bottom, #FEF1D7 2%, transparent 100%);
 
     img {
-      padding-right: 10%;
+      padding-right: 20px;
       width: 20%;
     }
   }

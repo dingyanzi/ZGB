@@ -150,6 +150,12 @@ export default {
           left: '10%',
           right: '5%',
         },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'shadow'
+          }
+        },
         xAxis: {
           data: dataAxis,
           axisTick: {
@@ -161,7 +167,10 @@ export default {
           },
           axisLabel: {
             color: '#999',
-            fontSize: 16
+            fontSize: 14,
+            formatter: function (value) {
+              return value.length > 8 ? value.slice(0, 8) + '...' : value;
+            }
           },
           z: 10
         },
@@ -216,6 +225,9 @@ export default {
       let data = index === 0 ? this.projectTypePrice : this.projectTypeNum;
       const myChart = echarts.init(document.getElementById('echartsB'));
       const option = {
+        tooltip: {
+          trigger: 'item'
+        },
         series: [
           {
             type: 'pie',
@@ -225,7 +237,11 @@ export default {
               normal: {
                 show: true,
                 formatter: function (params) {
-                  return '{a|' + params.name + '} {b|' + params.value + '} {str|' + str + '}';
+                  var name = params.name;
+                  if (name.length > 6) { // 设置最大字符数
+                    name = name.substring(0, 6) + '...'; // 截断并添加省略号
+                  }
+                  return '{a|' + name + '} {b|' + params.value + '} {str|' + str + '}';
                 },
                 rich: {
                   a: {
@@ -233,7 +249,7 @@ export default {
                     fontSize: 16
                   },
                   b: {
-                    fontSize: 26
+                    fontSize: 24
                   },
                   str: {
                     fontSize: 16
@@ -393,6 +409,6 @@ export default {
 
 .charts {
   width: 100%;
-  height: 35vh;
+  height: 280px;
 }
 </style>

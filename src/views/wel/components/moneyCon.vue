@@ -9,9 +9,9 @@
       <el-table class="tableS" stripe :data="tableData" height="200" :border="false" :cell-style="{ border: 0 + 'px' }">
         <el-table-column prop="projectName" label="名称" :show-overflow-tooltip="true">
         </el-table-column>
-        <el-table-column prop="subtotal" label="总金额">
+        <el-table-column prop="price" label="总金额">
         </el-table-column>
-        <el-table-column prop="price" label="已支金额">
+        <el-table-column prop="subtotal" label="已支金额">
         </el-table-column>
         <el-table-column prop="percentage" label="进度">
           <template slot-scope="scope">
