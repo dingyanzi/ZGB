@@ -154,7 +154,12 @@ export default {
           trigger: 'axis',
           axisPointer: {
             type: 'shadow'
-          }
+          },
+          formatter: function (params) {
+            var extraText = '%';
+            return params[0].name + '<br/>' +
+              '<span style="color:#6EADFD;">•</span>' + params[0].value + extraText;
+          },
         },
         xAxis: {
           data: dataAxis,

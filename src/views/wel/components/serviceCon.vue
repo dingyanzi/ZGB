@@ -5,9 +5,8 @@
         <img src="../../../styles/images/index_c.png">服务对象人数统计(人)
       </div>
       <div class="right">
-        <div class="desc"><span class="round rounda"></span>目标服务：<span><b>{{ dataObj.personNumTotal }}</b>人</span></div>
-        <div class="desc"><span class="round roundb"></span>已服务：<span><b>{{ dataObj.numberBeneficiariesTotal
-              }}</b>人</span></div>
+        <div class="desc"><span class="round rounda"></span>目标服务：<span><b>{{ dataObj.numberBeneficiariesTotal }}</b>人</span></div>
+        <div class="desc"><span class="round roundb"></span>已服务：<span><b>{{ dataObj.personNumTotal}}</b>人</span></div>
       </div>
     </div>
     <div class="conBox">

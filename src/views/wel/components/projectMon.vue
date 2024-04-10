@@ -5,14 +5,14 @@
       <el-col class="con">
         <img src="../../../styles/images/index_b_1.png">
         <div class="desc">
-          <div class="numbers"><b>{{ dataObj.totalPrice }}</b>万元</div>
+          <div class="numbers"><b>{{ dataObj.totalPrice==null?0:dataObj.totalPrice }}</b>万元</div>
           <div class="name">项目总金额</div>
         </div>
       </el-col>
       <el-col class="con">
         <img src="../../../styles/images/index_b_2.png">
         <div class="desc">
-          <div class="numbers"><b>{{ dataObj.expenditureAmount }}</b>万元</div>
+          <div class="numbers"><b>{{ dataObj.expenditureAmount==null?0:dataObj.expenditureAmount }}</b>万元</div>
           <div class="name">已支金额总计</div>
         </div>
       </el-col>
@@ -61,7 +61,7 @@ export default {
 
     img {
       padding-right: 20px;
-      width: 20%;
+      width: 18%;
     }
   }
 
