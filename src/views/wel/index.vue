@@ -145,7 +145,32 @@ export default {
     },
     echartsInitA(dataAxis, data) {
       const myChart = echarts.init(document.getElementById('echartsA'));
+      const dataZoomEnd = dataAxis.length > 4 ? (4 / dataAxis.length) * 100 : 100;
       const option = {
+        dataZoom: [
+          {
+            show: dataZoomEnd == 100 ? false : true,
+            type: 'slider',
+            realtime: true,
+            start: 0,
+            end: dataZoomEnd,
+            height: 10,
+            bottom: 0,
+            handleSize: 0, // 左右2个滑动条的大小
+            borderColor: '#fff', // 滑动通道的边框颜色
+            showDetail: false,
+            fillerColor: '#eee',
+            backgroundColor: '#fff', // 未选中的滑动条的颜色
+            showDataShadow: false, // 是否显示数据阴影 默认auto
+          },
+          {
+            // 没有下面这块的话，只能拖动滚动条，鼠标滚轮在区域内不能控制外部滚动条(当前滑块可控制)
+            type: 'inside',
+            realtime: true,
+            start: 0,
+            end: dataZoomEnd,
+          },
+        ],
         grid: {
           left: '10%',
           right: '5%',
@@ -173,9 +198,11 @@ export default {
           axisLabel: {
             color: '#999',
             fontSize: 14,
-            formatter: function (value) {
-              return value.length > 8 ? value.slice(0, 8) + '...' : value;
-            }
+            interval: 0,//文本间隔显示 auto自适应，1间隔一个显示
+            rotate: "15",//文本旋转45度
+            // formatter: function (value) {
+            //   return value.length > 8 ? value.slice(0, 8) + '...' : value;
+            // }
           },
           z: 10
         },
