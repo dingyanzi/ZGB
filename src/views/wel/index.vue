@@ -222,7 +222,7 @@ export default {
     },
     echartsInitB(index) {
       const str = index == 0 ? '个' : '万元';
-      let data = index === 0 ? this.projectTypePrice : this.projectTypeNum;
+      let data = index === 0 ? this.projectTypeNum : this.projectTypePrice;
       const myChart = echarts.init(document.getElementById('echartsB'));
       const option = {
         tooltip: {
