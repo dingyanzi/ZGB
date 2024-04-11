@@ -200,9 +200,9 @@ export default {
             fontSize: 14,
             interval: 0,//文本间隔显示 auto自适应，1间隔一个显示
             rotate: "15",//文本旋转45度
-            // formatter: function (value) {
-            //   return value.length > 8 ? value.slice(0, 8) + '...' : value;
-            // }
+            formatter: function (value) {
+              return value.length > 5 ? value.slice(0, 5) + '...' : value;
+            }
           },
           z: 10
         },
